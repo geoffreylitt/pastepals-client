@@ -7,7 +7,38 @@
   </head>
   <body>
     <h1>Welcome to universal clipboard!</h1>
-    <p>Your clipboard is now shared with the world.</p>
-    <p>Be careful what you copy / paste....</p>
+    <p>Your clipboard is now shared with the world. Be careful what you copy / paste....</p>
+
+    <label for="roomSelect">Choose a room:</label>
+
+    <select id="roomSelect">
+      <option value="global">Global</option>
+      <option value="random">Random</option>
+      <option value="serious">Serious</option>
+    </select>
+
+    <script>
+       const {ipcRenderer} = require('electron')
+
+       const roomSelect = document.getElementById("roomSelect");
+
+       roomSelect.addEventListener('change', e => {
+         const room = e.target.value;
+         console.log("room changed", e, room)
+         ipcRenderer.send('select-room', room)
+       })
+
+       // Synchronous message emmiter and handler
+
+       // Async message handler
+       // ipcRenderer.on('asynchronous-reply', (event, arg) => {
+       //    console.log(arg)
+       // })
+
+       // Async message sender
+       // ipcRenderer.send('asynchronous-message', 'async ping')
+    </script>
   </body>
 </html>
+
+

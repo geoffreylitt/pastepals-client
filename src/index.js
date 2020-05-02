@@ -1,4 +1,4 @@
-const { app, BrowserWindow, clipboard, Notification } = require('electron');
+const { app, BrowserWindow, clipboard, Notification, ipcMain } = require('electron');
 const { menubar } = require('menubar');
 
 const fetch = require('node-fetch');
@@ -6,7 +6,8 @@ const path = require('path');
 
 const mb = menubar({
   'dir': './src',
-  'icon': './src/icons/clipboard.png'
+  'icon': './src/icons/clipboard.png',
+  'browserWindow': { webPreferences: { nodeIntegration: true } }
 });
 
 mb.on('ready', () => {
@@ -27,6 +28,17 @@ app.on('window-all-closed', () => {
   }
 });
 
+let room = 'global';
+
+ipcMain.on('select-room', (event, selectedRoom) => {
+   console.log("room switched", selectedRoom);
+   room = selectedRoom;
+   syncClipboard();
+
+   // Event emitter for sending asynchronous messages
+   // event.sender.send('asynchronous-reply', 'async pong')
+})
+
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
@@ -36,7 +48,7 @@ let serverContent;
 // Sync clipboard with the server
 async function syncClipboard() {
   let newClipboardContent = clipboard.readText();
-  let response = await fetch('https://global-copypaste-buffer--glench.repl.co/get?buffer=*')
+  let response = await fetch(`https://global-copypaste-buffer--glench.repl.co/get?buffer=${room}`)
   let newServerContent = await response.text()
 
   // If the server has new content, download it into our local clipboard.
@@ -62,7 +74,7 @@ async function syncClipboard() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            buffer: '*',
+            buffer: room,
             value: newClipboardContent,
         })
     })
