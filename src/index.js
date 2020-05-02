@@ -48,7 +48,7 @@ app.on('activate', () => {
 let clipboardContent;
 
 // See if the clipboard has changed
-function getClipboard() {
+function getLocalClipboard() {
   let newClipboardContent = clipboard.readText();
   if (newClipboardContent !== clipboardContent) {
     console.log("new clipboard!", newClipboardContent)
@@ -63,4 +63,4 @@ function getClipboard() {
 }
 
 // Every second, see if clipboard has new stuff
-setInterval(getClipboard, 1000);
+setInterval(getLocalClipboard, 1000);
