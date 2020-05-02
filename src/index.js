@@ -53,7 +53,7 @@ async function syncClipboard() {
 
   // If the server has new content, download it into our local clipboard.
   // (If we recently changed our local clipboard, too bad--those changes get wiped out)
-  if (newServerContent !== serverContent) {
+  if (newServerContent && newServerContent !== serverContent) {
     console.log("new server content", newServerContent)
     clipboard.writeText(newServerContent)
     if (newServerContent !== clipboardContent) {

@@ -7,15 +7,13 @@
   </head>
   <body>
     <h1>Welcome to Paste Pals</h1>
-    <p>Your clipboard is now shared with the world. <strong>Be careful what you copy / paste....</strong></p>
+    <p>Everything you copy/paste is now shared! <strong>Be careful...</strong></p>
 
-    <label for="roomSelect">Choose a room:</label>
+    <p>By default, you're in one big global room.</p>
+    <p>To take things more private, enter a new room name, and share it with your friends. Anyone who knows the name can enter the room.</p>
 
-    <select id="roomSelect">
-      <option value="global">Global</option>
-      <option value="random">Random</option>
-      <option value="serious">Serious</option>
-    </select>
+    <label for="roomSelect">Room name:</label>
+    <input type="text" id="roomSelect" value="global" />
 
     <script>
        const {ipcRenderer} = require('electron')
