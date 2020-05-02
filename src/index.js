@@ -49,25 +49,28 @@ app.on('activate', () => {
 let clipboardContent;
 let serverContent;
 
-// See if the clipboard has changed
-async function getLocalClipboard() {
+// Sync clipboard with the server
+async function syncClipboard() {
   let newClipboardContent = clipboard.readText();
   let response = await fetch('https://global-copypaste-buffer--glench.repl.co/get?buffer=*')
   let newServerContent = await response.text()
 
+  // If the server has new content, download it into our local clipboard.
+  // (If we recently changed our local clipboard, too bad--those changes get wiped out)
   if (newServerContent !== serverContent) {
-    console.log("new server content", newClipboardContent)
+    console.log("new server content", newServerContent)
     clipboard.writeText(newServerContent)
     if (newServerContent !== clipboardContent) {
         let notification = new Notification({title: 'New clipboard message!'})
         notification.show()
     }
+    // remember what was in the server clipboard
     serverContent = newServerContent;
   } else if (newClipboardContent !== clipboardContent) {
-    console.log("new clipboard!", newClipboardContent)
+    // If the local clipboard has new contents, we upload them to the server
+    console.log("new local clipboard!", newClipboardContent)
 
-    // remember what was in the clipboard, so we can
-    // compare against it next time we check
+    // remember what was in the local clipboard
     clipboardContent = newClipboardContent
 
     // notify the API
@@ -82,5 +85,5 @@ async function getLocalClipboard() {
   }
 }
 
-// Every second, see if clipboard has new stuff
-setInterval(getLocalClipboard, 1000);
+// Every second, sync the clipboard
+setInterval(syncClipboard, 1000);
