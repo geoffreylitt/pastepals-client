@@ -45,5 +45,19 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
-clipboard.writeText('Example String', 'selection')
-console.log(clipboard.readText('selection'))
+let clipboardContent;
+
+// See if the clipboard has changed
+function getClipboard() {
+  let newClipboardContent = clipboard.readText();
+  if (newClipboardContent !== clipboardContent) {
+    console.log("new clipboard!", newClipboardContent)
+
+    // notify the API
+
+    clipboardContent = newClipboardContent
+  }
+}
+
+// Every second, see if clipboard has new stuff
+setInterval(getClipboard, 1000);
