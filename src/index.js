@@ -50,7 +50,7 @@ let clipboardContent;
 let serverContent;
 
 // See if the clipboard has changed
-async function getClipboard() {
+function getLocalClipboard() {
   let newClipboardContent = clipboard.readText();
   let response = await fetch('https://global-copypaste-buffer--glench.repl.co/get?buffer=*')
   let newServerContent = await response.text()
@@ -62,6 +62,8 @@ async function getClipboard() {
   } else if (newClipboardContent !== clipboardContent) {
     console.log("new clipboard!", newClipboardContent)
 
+    // remember what was in the clipboard, so we can
+    // compare against it next time we check
     clipboardContent = newClipboardContent
 
     // notify the API
@@ -73,9 +75,8 @@ async function getClipboard() {
             value: newClipboardContent,
         })
     })
-
   }
 }
 
 // Every second, see if clipboard has new stuff
-setInterval(getClipboard, 1000);
+setInterval(getLocalClipboard, 1000);
