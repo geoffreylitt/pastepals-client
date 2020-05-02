@@ -963,6 +963,11 @@ electron-packager@^14.2.0:
     semver "^6.0.0"
     yargs-parser "^16.0.0"
 
+electron-positioner@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/electron-positioner/-/electron-positioner-4.1.0.tgz#e158f8f6aabd6725a8a9b4f2279b9504bcbea1b0"
+  integrity sha512-726DfbI9ZNoCg+Fcu6XLuTKTnzf+6nFqv7h+K/V6Ug7IbaPMI7s9S8URnGtWFCy5N5PL4HSzRFF2mXuinftDdg==
+
 electron-rebuild@^1.8.6:
   version "1.10.1"
   resolved "https://registry.yarnpkg.com/electron-rebuild/-/electron-rebuild-1.10.1.tgz#f5cb911586e703fe78e2a0e9f644e7a76f137d97"
@@ -1803,6 +1808,13 @@ mem@^4.3.0:
     map-age-cleaner "^0.1.1"
     mimic-fn "^2.0.0"
     p-is-promise "^2.0.0"
+
+menubar@^8.0.2:
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/menubar/-/menubar-8.0.2.tgz#551b94febc01bf5e97bf83699e7c4907fe55d693"
+  integrity sha512-yGJMHddKCDZHLkLaUNms8AEfMxYucQ0xkYpQqbQaO3P4snjPEfyqBKu8J/jBA0t3Z+KjkLP3isMVtBUhFWEnhw==
+  dependencies:
+    electron-positioner "^4.1.0"
 
 meow@^3.1.0:
   version "3.7.0"
