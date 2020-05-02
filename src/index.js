@@ -1,4 +1,4 @@
-const { app, BrowserWindow, clipboard } = require('electron');
+const { app, BrowserWindow, clipboard, Notification } = require('electron');
 const fetch = require('node-fetch');
 const path = require('path');
 
@@ -58,6 +58,10 @@ async function getLocalClipboard() {
   if (newServerContent !== serverContent) {
     console.log("new server content", newClipboardContent)
     clipboard.writeText(newServerContent)
+    if (newServerContent !== clipboardContent) {
+        let notification = new Notification({title: 'New clipboard message!'})
+        notification.show()
+    }
     serverContent = newServerContent;
   } else if (newClipboardContent !== clipboardContent) {
     console.log("new clipboard!", newClipboardContent)
