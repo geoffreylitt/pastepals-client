@@ -50,7 +50,7 @@ let clipboardContent;
 let serverContent;
 
 // See if the clipboard has changed
-function getLocalClipboard() {
+async function getLocalClipboard() {
   let newClipboardContent = clipboard.readText();
   let response = await fetch('https://global-copypaste-buffer--glench.repl.co/get?buffer=*')
   let newServerContent = await response.text()
