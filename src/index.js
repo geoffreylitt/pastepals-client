@@ -1,4 +1,5 @@
 const { app, BrowserWindow, clipboard } = require('electron');
+const fetch = require('node-fetch');
 const path = require('path');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -46,16 +47,33 @@ app.on('activate', () => {
 // code. You can also put them in separate files and import them here.
 
 let clipboardContent;
+let serverContent;
 
 // See if the clipboard has changed
-function getClipboard() {
+async function getClipboard() {
   let newClipboardContent = clipboard.readText();
-  if (newClipboardContent !== clipboardContent) {
+  let response = await fetch('https://global-copypaste-buffer--glench.repl.co/get?buffer=*')
+  let newServerContent = await response.text()
+
+  if (newServerContent !== serverContent) {
+    console.log("new server content", newClipboardContent)
+    clipboard.writeText(newServerContent)
+    serverContent = newServerContent;
+  } else if (newClipboardContent !== clipboardContent) {
     console.log("new clipboard!", newClipboardContent)
 
-    // notify the API
-
     clipboardContent = newClipboardContent
+
+    // notify the API
+    await fetch('https://global-copypaste-buffer--glench.repl.co/set', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            buffer: '*',
+            value: newClipboardContent,
+        })
+    })
+
   }
 }
 
