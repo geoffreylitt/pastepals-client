@@ -4,6 +4,8 @@ const { menubar } = require('menubar');
 const fetch = require('node-fetch');
 const path = require('path');
 
+let room = "public"
+
 const mb = menubar({
   'dir': './src',
   'icon': './src/icons/clipboard.png',
@@ -28,15 +30,11 @@ app.on('window-all-closed', () => {
   }
 });
 
-let room = 'global';
-
 ipcMain.on('select-room', (event, selectedRoom) => {
    console.log("room switched", selectedRoom);
    room = selectedRoom;
-   syncClipboard();
 
-   // Event emitter for sending asynchronous messages
-   // event.sender.send('asynchronous-reply', 'async pong')
+   syncClipboard();
 })
 
 // In this file you can include the rest of your app's specific main process

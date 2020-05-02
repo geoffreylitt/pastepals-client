@@ -9,32 +9,49 @@
     <h1>Welcome to Paste Pals</h1>
     <p>Everything you copy/paste is now shared! <strong>Be careful...</strong></p>
 
-    <p>By default, you're in one big global room.</p>
-    <p>To take things more private, enter a new room name, and share it with your friends. Anyone who knows the name can enter the room.</p>
+    You are in room:
+    <span id="room-name">public</span>
 
-    <label for="roomSelect">Room name:</label>
-    <input type="text" id="roomSelect" value="global" />
+    <div>
+      <button id="join-room">Switch rooms</button>
+    </div>
+
+    <div id="new-room-creator" style="display: none;">
+      <p>Enter a room name, then share it with your friends!</p>
+      <label for="new-room-name">Room name</label>
+      <input type="text" id="new-room-name"/>
+      <button id="submit-new-room">Go!</button>
+    </div>
 
     <script>
-       const {ipcRenderer} = require('electron')
+      const {ipcRenderer} = require('electron')
 
-       const roomSelect = document.getElementById("roomSelect");
+      const newRoomCreator = document.getElementById("new-room-creator");
 
-       roomSelect.addEventListener('change', e => {
-         const room = e.target.value;
-         console.log("room changed", e, room)
-         ipcRenderer.send('select-room', room)
-       })
+      document.getElementById("join-room").addEventListener('click', e => {
+        newRoomCreator.style.display = "block";
+      })
 
-       // Synchronous message emmiter and handler
+      function changeRoom(room) {
+        console.log("room changed", room)
+        ipcRenderer.send('select-room', room)
 
-       // Async message handler
-       // ipcRenderer.on('asynchronous-reply', (event, arg) => {
-       //    console.log(arg)
-       // })
+        document.getElementById('room-name').textContent = room;
 
-       // Async message sender
-       // ipcRenderer.send('asynchronous-message', 'async ping')
+        newRoomCreator.style.display = "none";
+      }
+
+      document.getElementById("submit-new-room").addEventListener('click', e => {
+        const room = document.querySelector("#new-room-name").value;
+        changeRoom(room);
+      })
+
+      document.querySelector("#new-room-name").addEventListener('keypress', e => {
+        if (e.key === 'Enter') {
+          const room = document.querySelector("#new-room-name").value;
+          changeRoom(room);
+        }
+      })
     </script>
   </body>
 </html>
