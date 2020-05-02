@@ -10,13 +10,65 @@
                 font-size: 13px;
                 font-family: Helvetica, Arial, sans-serif;
                 line-height: 1;
+                height: 100%;
             }
+
             table {
                 border-collapse: collapse;
                 border-spacing: none;
             }
-            p {
-                margin: 0;
+
+            h1 {
+                margin-left: 10%;
+            }
+
+            /* The hero image */
+            .hero-image {
+                /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+                background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("site/clipboard-background.jpg");
+
+                /* Set a specific height */
+                height: 80%;
+
+                /* Position and center the image to scale nicely on all screens */
+                background-position: top;
+                background-repeat: no-repeat;
+                /* background-size: 80%; */
+                position: relative;
+            }
+
+            /* Place text in the middle of the image */
+            .hero-text p {
+                margin-top: -10px;
+                margin-bottom: 30px;
+                font-size: 20px;
+                color: #ddd;
+            }
+            .hero-text {
+                text-align: center;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: white;
+            }
+            .hero-text h2 {
+                font-size: 50px;
+            }
+            .hero-text a {
+                border: none;
+                outline: 0;
+                display: inline-block;
+                padding: 10px 25px;
+                color: black;
+                background-color: #ddd;
+                text-align: center;
+                cursor: pointer;
+            }
+
+            .hero-text a:hover {
+                background-color: #555;
+                color: white;
             }
         </style>
 
@@ -39,9 +91,14 @@
     <body>
 
         <h1>Pastepals.club</h1>
-        <p>The only social network in your clipboard. Copy and paste with your friends!</p>
 
-        <h2><a href="out/make/zip/darwin/x64/universal-clipboard-darwin-x64-1.0.0.zip">download</a></h2>
+        <div class="hero-image">
+            <div class="hero-text">
+                <h2>The social network in your clipboard.</h2>
+                <p>Copy and paste with your friends!</p>
+                <a href="out/make/zip/darwin/x64/universal-clipboard-darwin-x64-1.0.0.zip">Download for Mac</a>
+            </div>
+        </div> 
 
     </body>
 </html>
