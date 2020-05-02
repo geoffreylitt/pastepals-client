@@ -8,3 +8,17 @@ body {
 .room-name {
   font-weight: bold;
 }
+
+.button {
+  margin: 10px 0;
+  font-size: 14px;
+  color: white;
+  background-color: #019829;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+#new-room-creator {
+  margin: 10px 0;
+}

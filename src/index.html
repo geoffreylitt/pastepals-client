@@ -6,21 +6,21 @@
     <link rel="stylesheet" href="index.css">
   </head>
   <body>
-    <h1>Welcome to Paste Pals</h1>
-    <p>Everything you copy/paste is now shared! <strong>Be careful...</strong></p>
+    <h2>Paste Pals</h2>
+    <p>Everything you copy on your clipboard is now shared! <strong>Think twice about what you copy...</strong></p>
 
     You are in room:
     <span id="room-name">public</span>
 
     <div>
-      <button id="join-room">Switch rooms</button>
+      <button class="button" id="join-room">Switch rooms</button>
     </div>
 
     <div id="new-room-creator" style="display: none;">
       <p>Enter a room name, then share it with your friends!</p>
       <label for="new-room-name">Room name</label>
       <input type="text" id="new-room-name"/>
-      <button id="submit-new-room">Go!</button>
+      <button id="submit-new-room" class="button">Go!</button>
     </div>
 
     <script>
