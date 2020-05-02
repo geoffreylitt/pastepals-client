@@ -53,8 +53,11 @@ function getClipboard() {
   if (newClipboardContent !== clipboardContent) {
     console.log("new clipboard!", newClipboardContent)
 
-    // notify the API
+    // todo: notify the API
 
+
+    // remember what was in the clipboard, so we can
+    // compare against it next time we check
     clipboardContent = newClipboardContent
   }
 }
