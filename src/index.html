@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="index.css">
   </head>
   <body>
-    <h2>📋 Paste Pals</h2>
+    <h2>📋 Paste Pals <a id="quit" href="#null">Quit</a></h2>
     <p>Everything you copy on your clipboard is now shared! <strong>Think twice about what you copy...</strong></p>
 
     You are in room:
@@ -23,8 +23,9 @@
       <button id="submit-new-room" class="button">Go!</button>
     </div>
 
+
     <script>
-      const {ipcRenderer} = require('electron')
+      const {ipcRenderer, remote} = require('electron')
 
       const newRoomCreator = document.getElementById("new-room-creator");
 
@@ -51,6 +52,10 @@
           const room = document.querySelector("#new-room-name").value;
           changeRoom(room);
         }
+      })
+      document.querySelector('#quit').addEventListener('click', e => {
+          e.preventDefault();
+          remote.app.quit();
       })
     </script>
   </body>

@@ -5,6 +5,20 @@ body {
   padding: 2rem;
 }
 
+#quit {
+    display: inline-block;
+    margin-left: 120px;
+    font-weight: normal;
+    font-size: 14px;
+    color: #333;
+}
+#quit:hover {
+    color: red;
+}
+#quit:active {
+    color: blue;
+}
+
 .room-name {
   font-weight: bold;
 }
