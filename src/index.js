@@ -7,8 +7,8 @@ const path = require('path');
 let room = "public"
 
 const mb = menubar({
-  'dir': './src',
-  'icon': './src/icons/clipboard.png',
+  'dir': __dirname,
+  'icon': __dirname+'/icons/clipboard.png',
   'browserWindow': { webPreferences: { nodeIntegration: true } }
 });
 
@@ -36,9 +36,6 @@ ipcMain.on('select-room', (event, selectedRoom) => {
 
    syncClipboard();
 })
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.
 
 let clipboardContent;
 let serverContent;
