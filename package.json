@@ -21,7 +21,7 @@
     "forge": {
       "packagerConfig": {
           "dir": "./src",
-          "icon": "src/AppIcon"
+          "icon": "./src/icons/AppIcon.icns"
       },
       "makers": [
         {
