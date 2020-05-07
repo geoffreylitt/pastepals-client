@@ -52,6 +52,11 @@
                 font-size: 20px;
                 color: #ddd;
             }
+            .hero-text small {
+                display: block;
+                color: #aaa;
+                margin-top: 25px;
+            }
             .hero-text {
                 text-align: center;
                 position: absolute;
@@ -89,6 +94,43 @@
             #footer a {
                 color: inherit;
             }
+            #details {
+                margin-top: 80px;
+            }
+            .detail {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            .detail h2 {
+                display: inline-block;
+                background-color: #fff;
+                width: 45%;
+                padding: 100px 0;
+                text-align: center;
+                margin-right: 5%;
+                margin-top: 40px;
+            }
+            .detail img {
+                transform: scale(0.7);
+                transform-origin: left;
+                box-shadow: 0 0 5px #ccc;
+                margin-left: 7%;
+            }
+            .detail h2:nth-child(2) {
+                margin-left: 5%;
+            }
+            .detail p {
+                display: inline-block;
+                width: 34%;
+                border: 1px solid #ddd;
+                text-align: center;
+                line-height: 1.5;
+                padding: 10% 5%;
+                vertical-align: middle;
+                font-size: 16px;
+                color: #666;
+            }
+
         </style>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -116,13 +158,28 @@
                 <h2>The social network in your clipboard.</h2>
                 <p>Copy and paste with your friends!</p>
                 <a href="out/make/zip/darwin/x64/universal-clipboard-darwin-x64-1.0.0.zip">Download for Mac</a>
+                <small>(but seriously downloading this is a terrible idea)</small>
             </div>
         </div> 
 
-        <!-- <div> -->
-        <!--     the world's most intimate social network -->
-        <!--     privacy nightmare &#45; think about all the stuff you copy and paste all day -->
-        <!-- </div> -->
+        <div id="details">
+            <div class="detail">
+                <h2>Paste with everyone</h2>
+                <p>When you copy something to your clipboard, it's instantly shared with everyone else. And when <i>they</i> copy something to <i>their</i> clipboard, it's instantly shared with you! <br /><br /><i>What could go wrong?</i>&trade;</p>
+            </div>
+            <div class="detail">
+                <p>Share private information like passwords and social security numbers with 7 billion of your best friends. </p>
+                <h2>The world's most intimate social network</h2>
+            </div>
+            <div class="detail">
+                <h2>Share with rooms</h2>
+                <p>Create a copy room and share it with your friends. <img src="site/room_screenshot.png" alt="Screenshot of entering a room name" /></p>
+            </div>
+            <div class="detail">
+                <p>We take your privacy and security very seriously. We promise never to have any.</p>
+                <h2>Private and Secure</h2>
+            </div>
+        </div>
 
         <div id="footer">
             <p>Made by <a href="https://www.geoffreylitt.com/">Geoffrey Litt</a> and <a href="http://glench.com/">Glen Chiacchieri</a> for the <a href="bostonstupidhackathon.com/">2020 Boston Stupid Shit No One Needs &amp; Terrible Ideas Hackathon</a>.</p>
