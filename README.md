@@ -1,5 +1,7 @@
 _A project by [Glen Chiacchieri](http://glench.com/) and [Geoffrey Litt](https://www.geoffreylitt.com/) for the Boston Stupid Hackathon 2020._
 
+http://www.pastepals.club
+
 Have you ever wished you could share everything you copy-paste,
 with everyone you know? Yeah, me too.
 
